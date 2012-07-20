@@ -7,12 +7,10 @@
 
 class LifeWindow : public QMainWindow
 {
+  Q_OBJECT
+
   public:
     LifeWindow(QWidget *parent = 0);
-
-  private slots:
-    void open();
-    void save();
 
   private:
     LifeBoard *board;
@@ -20,6 +18,10 @@ class LifeWindow : public QMainWindow
     QAction *openAction;
     QAction *saveAction;
     QAction *exitAction;
+
+  private slots:
+    void open();
+    void save();
 };
 
 #endif
