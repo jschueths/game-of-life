@@ -15,6 +15,8 @@ class LifeField : public QWidget
   public:
     LifeField(QWidget *parent = 0);
     void setPoint(int i, int j, bool state);
+    bool& operator()(int x, int y);
+    const bool& operator()(const int x, const int y) const;
     
   public slots:
     void nextGeneration();

@@ -12,6 +12,8 @@ class LifeBoard : public QWidget
   
   public:
     LifeBoard(QWidget *parent = 0);
+    bool& operator()(int x, int y);
+    const bool& operator()(const int x, const int y) const;
    
   protected slots:
     void toggleButtons();

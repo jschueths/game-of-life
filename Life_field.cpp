@@ -169,3 +169,14 @@ int LifeField::index2pos(int x)
 {
   return (x - 1) * SCALE + BORDER;
 }
+
+bool& LifeField::operator()(int x, int y)
+{
+  return cell[current][x][y];
+}
+
+const bool& LifeField::operator()(const int x, const int y) const
+{
+  return cell[current][x][y];
+}
+

@@ -31,6 +31,7 @@
 # Qt Specific files
 *.pro
 *.user
+moc_*
 
 # Generic files to ignore
 *~

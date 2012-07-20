@@ -57,6 +57,14 @@ void LifeWindow::save()
     {
       QTextStream stream(&file);
       // Write out the grid here.
+      for(int i = 0; i < 52; i++)
+      {
+        for(int j = 0; j < 52; j++)
+        {
+          stream << board(i, j);
+        }
+        stream << "\n";
+      }
       stream.flush();
       file.close();
     }

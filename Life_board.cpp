@@ -69,3 +69,13 @@ void LifeBoard::toggleButtons()
   clearButton->setEnabled((clearButton->isEnabled() ? false : true));
   return;
 }
+
+bool& LifeBoard::operator()(int x, int y)
+{
+  return field(x, y);
+}
+
+const bool& LifeBoard::operator()(const int x, const int y) const
+{
+  return field(x, y);
+}
