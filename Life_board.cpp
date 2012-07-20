@@ -6,15 +6,15 @@
 LifeBoard::LifeBoard(QWidget *parent) : QWidget(parent)
 {
   field = new LifeField(this);
-  startButton = new QPushButton(tr("&Start"));
-  stopButton = new QPushButton(tr("S&top"));
-  stepButton = new QPushButton(tr("St&ep"));
-  clearButton = new QPushButton(tr("&Clear"));
+  startButton = new QPushButton(tr("Start"));
+  stopButton = new QPushButton(tr("Stop"));
+  stepButton = new QPushButton(tr("Step"));
+  clearButton = new QPushButton(tr("Clear"));
   stopButton->setEnabled(false);
   
-  slowButton = new QRadioButton(tr("S&low"));
-  normalButton = new QRadioButton(tr("&Normal"));
-  fastButton = new QRadioButton(tr("&Fast"));
+  slowButton = new QRadioButton(tr("Slow"));
+  normalButton = new QRadioButton(tr("Normal"));
+  fastButton = new QRadioButton(tr("Fast"));
   normalButton->setChecked(true);
   
 
