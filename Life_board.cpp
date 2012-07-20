@@ -8,7 +8,7 @@
 #include "Life_board.h"
 
 //////////////////////////////////////////////////////////////////////
-/// @fn LifeBoard()
+/// @fn LifeBoard::LifeBoard(QWidget *parent)
 /// @brief Constructor for the LifeBoard class.
 /// @pre none
 /// @post A new LifeBoard object is created.
@@ -72,7 +72,7 @@ LifeBoard::LifeBoard(QWidget *parent) : QWidget(parent)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void toggleButtons()
+/// @fn void LifeBoard::toggleButtons()
 /// @brief Enables and disables the control buttons based on state.
 /// @pre none
 /// @post The control buttons are toggled from their current state.
@@ -87,7 +87,7 @@ void LifeBoard::toggleButtons()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
+/// @fn bool& LifeBoard::operator()(int x, int y)
 /// @brief Mutator to the LifeField member.
 /// @pre 'x' and 'y' must be greater than 0 and less than 52.
 /// @post A reference to the boolean is returned.
@@ -100,7 +100,7 @@ bool& LifeBoard::operator()(int x, int y)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
+/// @fn const bool& LifeBoard::operator()(int x, int y) const
 /// @brief Accessor to the LifeField member.
 /// @pre 'x' and 'y' must be greater than 0 and less than 52.
 /// @post A const reference to the boolean is returned.

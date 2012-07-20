@@ -9,7 +9,7 @@
 
 
 //////////////////////////////////////////////////////////////////////
-/// @fn LifeWindow()
+/// @fn LifeWindow::LifeWindow(QWidget *parent)
 /// @brief Constructor for the LifeWindow class.
 /// @pre none
 /// @post A new LifeWindow object is created.
@@ -38,7 +38,7 @@ LifeWindow::LifeWindow(QWidget *parent) : QMainWindow(parent)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void open()
+/// @fn void LifeWindow::open()
 /// @brief Opens and reads in a file from disk.
 /// @pre none
 /// @post Sets the LifeField to the configuration that was stored
@@ -62,7 +62,7 @@ void LifeWindow::open()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void save()
+/// @fn void LifeWindow::save()
 /// @brief Saves the current LifeField configuration to disk.
 /// @pre none
 /// @post A configuration file is saved to disk.

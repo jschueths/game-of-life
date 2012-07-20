@@ -7,7 +7,7 @@
 #include "Life_field.h"
 
 //////////////////////////////////////////////////////////////////////
-/// @fn LifeField(QWidget *parent)
+/// @fn LifeField::LifeField(QWidget *parent)
 /// @brief Constructor for the LifeField class
 /// @pre none
 /// @post A LifeField object is created.
@@ -33,7 +33,7 @@ LifeField::LifeField(QWidget *parent) : QWidget(parent)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void setPoint(int i, int j, bool state)
+/// @fn void LifeField::setPoint(int i, int j, bool state)
 /// @brief Mutator to the LifeField member.
 /// @pre 'i' and 'j' must be greater than 0 and less than 52.
 /// @post The boolean at (i, j) is set to state.
@@ -50,7 +50,7 @@ void LifeField::setPoint(int i, int j, bool state)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void nextGeneration()
+/// @fn void LifeField::nextGeneration()
 /// @brief Generates the next generation of cells following 
 /// Conway's four rules.
 /// @pre none
@@ -80,7 +80,7 @@ void LifeField::nextGeneration()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void startGenerations()
+/// @fn void LifeField::startGenerations()
 /// @brief Starts a repeating timer to refresh the next generation.
 /// @pre none
 /// @post genTimer is started with a delay of speed.
@@ -93,7 +93,7 @@ void LifeField::startGenerations()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void stopGenerations();
+/// @fn void LifeField::stopGenerations();
 /// @brief Stops the repeating timer from refreshing the next
 /// generation.
 /// @pre none
@@ -106,12 +106,10 @@ void LifeField::stopGenerations()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
-/// @brief Mutator to the LifeField member.
-/// @pre 'x' and 'y' must be greater than 0 and less than 52.
-/// @post A reference to the boolean is returned.
-/// @param x The x-coordinate
-/// @param y The y-coordinate
+/// @fn void LifeField::setFast()
+/// @brief Changes the simulation speed to the FAST setting.
+/// @pre none
+/// @post The speed and timer interval are set to FAST.
 //////////////////////////////////////////////////////////////////////
 void LifeField::setFast()
 {
@@ -121,12 +119,10 @@ void LifeField::setFast()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
-/// @brief Mutator to the LifeField member.
-/// @pre 'x' and 'y' must be greater than 0 and less than 52.
-/// @post A reference to the boolean is returned.
-/// @param x The x-coordinate
-/// @param y The y-coordinate
+/// @fn void LifeField::setNormal()
+/// @brief Changes the simulation speed to the NORMAL setting.
+/// @pre none
+/// @post The speed and timer interval are set to NORMAL.
 //////////////////////////////////////////////////////////////////////
 void LifeField::setNormal()
 {
@@ -136,12 +132,10 @@ void LifeField::setNormal()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
-/// @brief Mutator to the LifeField member.
-/// @pre 'x' and 'y' must be greater than 0 and less than 52.
-/// @post A reference to the boolean is returned.
-/// @param x The x-coordinate
-/// @param y The y-coordinate
+/// @fn void LifeField::setSlow()
+/// @brief Changes the simulation speed to the SLOW setting.
+/// @pre none
+/// @post The speed and timer interval are set to SLOW.
 //////////////////////////////////////////////////////////////////////
 void LifeField::setSlow()
 {
@@ -151,7 +145,7 @@ void LifeField::setSlow()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void clear()
+/// @fn void LifeField::clear()
 /// @brief Wipes the cells.
 /// @pre none
 /// @post All the boolean cells are set to false.
@@ -173,7 +167,7 @@ void LifeField::clear()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void paintEvent(QPaintEvent *e)
+/// @fn void LifeField::paintEvent(QPaintEvent *e)
 /// @brief Called everytime the screen needs to be repainted.
 /// @pre none
 /// @post The LifeField on screen is refreshed.
@@ -207,7 +201,7 @@ void LifeField::paintEvent(QPaintEvent *e)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void resizeEvent(QResizeEvent *e)
+/// @fn void LifeField::resizeEvent(QResizeEvent *e)
 /// @brief Stubbed out for compilation. Nonfunctional for now.
 /// @pre none
 /// @post none
@@ -219,7 +213,7 @@ void LifeField::resizeEvent(QResizeEvent *e)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void mousePressEvent(QMouseEvent *e)
+/// @fn void LifeField::mousePressEvent(QMouseEvent *e)
 /// @brief Catches where the mouse was pressed and which mouse
 /// button was pressed.
 /// @pre none
@@ -236,7 +230,7 @@ void LifeField::mousePressEvent(QMouseEvent *e)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void mouseMoveEvent(QMouseEvent *e)
+/// @fn void LifeField::mouseMoveEvent(QMouseEvent *e)
 /// @brief Catches where the mouse was moved while a mouse
 /// button was pressed.
 /// @pre none
@@ -253,7 +247,7 @@ void LifeField::mouseMoveEvent(QMouseEvent *e)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void mouseHandle(const QPoint &pos, bool state)
+/// @fn void LifeField::mouseHandle(const QPoint &pos, bool state)
 /// @brief Converts the mouse position to a cell and passes it
 /// on to setPoint().
 /// @pre none
@@ -269,7 +263,7 @@ void LifeField::mouseHandle(const QPoint &pos, bool state)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn int pos2index(int x)
+/// @fn int LifeField::pos2index(int x)
 /// @brief Converts a screen position to an index position.
 /// @pre x is on the screen
 /// @post The screen position is converted to an index position.
@@ -281,7 +275,7 @@ int LifeField::pos2index(int x)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn int index2pos(int x)
+/// @fn int LifeField::index2pos(int x)
 /// @brief Converts an index position to a screen position.
 /// @pre x must be with the cell grid.
 /// @post The index position is converted to a screen position.
@@ -293,7 +287,7 @@ int LifeField::index2pos(int x)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
+/// @fn bool& LifeField::operator()(int x, int y)
 /// @brief Mutator to the boolean cells.
 /// @pre 'x' and 'y' must be greater than 0 and less than 52.
 /// @post A reference to the boolean is returned.
@@ -306,7 +300,7 @@ bool& LifeField::operator()(int x, int y)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& operator()(int x, int y)
+/// @fn const bool& LifeField::operator()(int x, int y) const
 /// @brief Accessor to the boolean cells.
 /// @pre 'x' and 'y' must be greater than 0 and less than 52.
 /// @post A const reference to the boolean is returned.
