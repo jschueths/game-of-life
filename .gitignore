@@ -1,3 +1,5 @@
+# Git ignore file
+
 # Compiled Object files
 *.slo
 *.lo
@@ -10,3 +12,28 @@
 *.lai
 *.la
 *.a
+
+# Object files
+*.o
+*.moc
+
+# Libraries
+*.lib
+
+# Shared objects
+*.dll
+*.so
+
+# Executables
+*.exe
+*.out
+
+# Qt Specific files
+*.pro
+*.user
+
+# Generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
