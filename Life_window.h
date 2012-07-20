@@ -10,10 +10,16 @@ class LifeWindow : public QMainWindow
   public:
     LifeWindow(QWidget *parent = 0);
 
+  private slots:
+    void open();
+    void save();
 
   private:
     LifeBoard *board;
-
+    QMenu *fileMenu;
+    QAction *openAction;
+    QAction *saveAction;
+    QAction *exitAction;
 };
 
 #endif
