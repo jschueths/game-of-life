@@ -1,6 +1,14 @@
-// Life_field.h
+//////////////////////////////////////////////////////////////////////
+/// @file Life_field.h
+/// @author jschueths
+/// @brief This is the class definition of the LifeField class.
+//////////////////////////////////////////////////////////////////////
 
-
+//////////////////////////////////////////////////////////////////////
+/// @class LifeField
+/// @brief The LifeField class provides a frame and functionality
+/// for the visualization of the Game of Life. 
+//////////////////////////////////////////////////////////////////////
 #ifndef __LIFE_FIELD_H__
 #define __LIFE_FIELD_H__
 
@@ -35,17 +43,17 @@ class LifeField : public QWidget
     void mouseHandle(const QPoint &pos, bool state);
     
   private:
-    enum {MAXSIZE = 50, MINSIZE = 10, BORDER = 5};
-    enum {SLOW = 350, NORMAL = 150, FAST = 50};
+    enum {MAXSIZE = 50, MINSIZE = 10, BORDER = 5};  ///< Enum for sizes
+    enum {SLOW = 350, NORMAL = 150, FAST = 50};     ///< Enum for speeds
     
-    bool cell[2][MAXSIZE + 2][MAXSIZE + 2];
-    int current;
-    int maxi, maxj;
-    int SCALE;
+    bool cell[2][MAXSIZE + 2][MAXSIZE + 2];         ///< 
+    int current;                                    ///< Holds which set of cells is the current generation.
+    int maxi, maxj;                                 ///< Holds the maximum iteration values.
+    int SCALE;                                      ///< The current scaling size.
     int pos2index(int x);
     int index2pos(int x);
-    int speed;
-    QTimer *genTimer;
+    int speed;                                      ///< Holds the current speed setting.
+    QTimer *genTimer;                               ///< Pointer to a QTimer used for updating the screen.
     
 };
     

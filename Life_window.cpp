@@ -1,8 +1,19 @@
-// Life_board.cpp
+//////////////////////////////////////////////////////////////////////
+/// @file Life_window.cpp
+/// @author jschueths
+/// @brief This is the implementation of the LifeWindow class.
+//////////////////////////////////////////////////////////////////////
 
 #include <QtGui>
 #include "Life_window.h"
 
+
+//////////////////////////////////////////////////////////////////////
+/// @fn LifeWindow()
+/// @brief Constructor for the LifeWindow class.
+/// @pre none
+/// @post A new LifeWindow object is created.
+//////////////////////////////////////////////////////////////////////
 LifeWindow::LifeWindow(QWidget *parent) : QMainWindow(parent)
 {
   board = new LifeBoard;
@@ -26,6 +37,13 @@ LifeWindow::LifeWindow(QWidget *parent) : QMainWindow(parent)
 
 }
 
+//////////////////////////////////////////////////////////////////////
+/// @fn void open()
+/// @brief Opens and reads in a file from disk.
+/// @pre none
+/// @post Sets the LifeField to the configuration that was stored
+/// in the file.
+//////////////////////////////////////////////////////////////////////
 void LifeWindow::open()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Grid Files (*.grd)"));
@@ -43,6 +61,12 @@ void LifeWindow::open()
   return;
 }
 
+//////////////////////////////////////////////////////////////////////
+/// @fn void save()
+/// @brief Saves the current LifeField configuration to disk.
+/// @pre none
+/// @post A configuration file is saved to disk.
+//////////////////////////////////////////////////////////////////////
 void LifeWindow::save()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Grid Files (*.grd)"));

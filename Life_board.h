@@ -1,5 +1,14 @@
-// Life_board.h
+//////////////////////////////////////////////////////////////////////
+/// @file Life_board.h
+/// @author jschueths
+/// @brief This is the class definition of the LifeBoard class.
+//////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////
+/// @class LifeBoard
+/// @brief The LifeBoard class is a wrapper around the LifeField
+/// class and the input controls to affect the LifeField. 
+//////////////////////////////////////////////////////////////////////
 #ifndef __LIFE_BOARD_H__
 #define __LIFE_BOARD_H__
 
@@ -19,14 +28,14 @@ class LifeBoard : public QWidget
     void toggleButtons();
   
   private:
-    LifeField *field;
-    QPushButton *startButton;
-    QPushButton *stopButton;
-    QPushButton *stepButton;
-    QPushButton *clearButton;
-    QRadioButton *slowButton;
-    QRadioButton *normalButton;
-    QRadioButton *fastButton;
+    LifeField *field;           ///< Pointer to the LifeField object
+    QPushButton *startButton;   ///< Pointer to the Start button
+    QPushButton *stopButton;    ///< Pointer to the Stop button
+    QPushButton *stepButton;    ///< Pointer to the Step button
+    QPushButton *clearButton;   ///< Pointer to the Clear button
+    QRadioButton *slowButton;   ///< Pointer to the Slow radio button
+    QRadioButton *normalButton; ///< Pointer to the Normal radio button
+    QRadioButton *fastButton;   ///< Pointer to the Fast radio button
 };
 
 #endif

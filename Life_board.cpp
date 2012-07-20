@@ -1,8 +1,18 @@
-// Life_board.cpp
+//////////////////////////////////////////////////////////////////////
+/// @file Life_board.cpp
+/// @author jschueths
+/// @brief This is the implementation of the LifeBoard class.
+//////////////////////////////////////////////////////////////////////
 
 #include <QtGui>
 #include "Life_board.h"
 
+//////////////////////////////////////////////////////////////////////
+/// @fn LifeBoard()
+/// @brief Constructor for the LifeBoard class.
+/// @pre none
+/// @post A new LifeBoard object is created.
+//////////////////////////////////////////////////////////////////////
 LifeBoard::LifeBoard(QWidget *parent) : QWidget(parent)
 {
   field = new LifeField(this);
@@ -61,6 +71,12 @@ LifeBoard::LifeBoard(QWidget *parent) : QWidget(parent)
   
 }
 
+//////////////////////////////////////////////////////////////////////
+/// @fn void toggleButtons()
+/// @brief Enables and disables the control buttons based on state.
+/// @pre none
+/// @post The control buttons are toggled from their current state.
+//////////////////////////////////////////////////////////////////////
 void LifeBoard::toggleButtons()
 {
   startButton->setEnabled((startButton->isEnabled() ? false : true));
@@ -70,11 +86,27 @@ void LifeBoard::toggleButtons()
   return;
 }
 
+//////////////////////////////////////////////////////////////////////
+/// @fn bool& operator()(int x, int y)
+/// @brief Mutator to the LifeField member.
+/// @pre 'x' and 'y' must be greater than 0 and less than 52.
+/// @post A reference to the boolean is returned.
+/// @param x The x-coordinate
+/// @param y The y-coordinate
+//////////////////////////////////////////////////////////////////////
 bool& LifeBoard::operator()(int x, int y)
 {
   return field(x, y);
 }
 
+//////////////////////////////////////////////////////////////////////
+/// @fn bool& operator()(int x, int y)
+/// @brief Accessor to the LifeField member.
+/// @pre 'x' and 'y' must be greater than 0 and less than 52.
+/// @post A const reference to the boolean is returned.
+/// @param x The x-coordinate
+/// @param y The y-coordinate
+//////////////////////////////////////////////////////////////////////
 const bool& LifeBoard::operator()(const int x, const int y) const
 {
   return field(x, y);
