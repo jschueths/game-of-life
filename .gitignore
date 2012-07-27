@@ -42,4 +42,5 @@ moc_*
 *.html
 *.js
 *.css
+Makefile*
 
