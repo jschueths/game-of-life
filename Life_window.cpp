@@ -85,7 +85,7 @@ void LifeWindow::save()
       {
         for(int j = 0; j < 52; j++)
         {
-          stream << board(i, j);
+          stream << board->operator()(i, j);
         }
         stream << "\n";
       }

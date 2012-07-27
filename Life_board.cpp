@@ -96,7 +96,7 @@ void LifeBoard::toggleButtons()
 //////////////////////////////////////////////////////////////////////
 bool& LifeBoard::operator()(int x, int y)
 {
-  return field(x, y);
+  return field->operator()(x, y);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -109,5 +109,5 @@ bool& LifeBoard::operator()(int x, int y)
 //////////////////////////////////////////////////////////////////////
 const bool& LifeBoard::operator()(const int x, const int y) const
 {
-  return field(x, y);
+  return field->operator()(x, y);
 }
