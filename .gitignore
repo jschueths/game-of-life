@@ -38,3 +38,7 @@ moc_*
 *.lock
 *.DS_Store
 *.swp
+*.png
+*.html
+*.js
+
