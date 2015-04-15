@@ -6,6 +6,8 @@
 
 #include <QtGui>
 #include "Life_window.h"
+#include <fstream>
+#include <string>
 
 
 //////////////////////////////////////////////////////////////////////
@@ -36,7 +38,7 @@ LifeWindow::LifeWindow(QWidget *parent) : QMainWindow(parent)
   setWindowTitle(tr("Conway's Game of Life"));
 
 }
-
+#include <iostream>
 //////////////////////////////////////////////////////////////////////
 /// @fn void LifeWindow::open()
 /// @brief Opens and reads in a file from disk.
@@ -56,7 +58,16 @@ void LifeWindow::open()
       return;
     }
     // Read in and set the grid here.
+    QTextStream stream(&file);
+    for(int i = 0; i < 52; i++) {
+	    QString line;
+	    stream >> line;
+	    for(int j = 0; j < 52; j++) {
+		    board->operator()(i,j) = line[j] == '1' ? true : false;
+	    }
+    }
     file.close();
+    repaint();
   }
   return;
 }
