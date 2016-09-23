@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "window.h"
 
@@ -26,9 +26,9 @@ Window::Window(QWidget *parent) : QMainWindow(parent) {
 	mSaveAction = new QAction(tr("&Save"), this);
 	mExitAction = new QAction(tr("E&xit"), this);
 
-	connect(mOpenAction, SIGNAL(triggered()), this, SLOT(open()));
-	connect(mSaveAction, SIGNAL(triggered()), this, SLOT(save()));
-	connect(mExitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+	connect(mOpenAction, &QAction::triggered, this, &Window::open);
+	connect(mSaveAction, &QAction::triggered, this, &Window::save);
+	connect(mExitAction, &QAction::triggered, qApp, &QApplication::quit);
 
 	mFileMenu = menuBar()->addMenu(tr("&File"));
 	mFileMenu->addAction(mOpenAction);

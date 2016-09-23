@@ -4,7 +4,7 @@
 /// @brief This is the implementation of the Board class.
 //////////////////////////////////////////////////////////////////////
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "board.h"
 
@@ -28,17 +28,18 @@ Board::Board(QWidget *parent) : QWidget(parent) {
 	mFastButton = new QRadioButton(tr("Fast"));
 	mNormalButton->setChecked(true);
 
-	connect(mStartButton, SIGNAL(clicked()), mField, SLOT(startGenerations()));
-	connect(mStopButton, SIGNAL(clicked()), mField, SLOT(stopGenerations()));
-	connect(mStepButton, SIGNAL(clicked()), mField, SLOT(nextGeneration()));
-	connect(mClearButton, SIGNAL(clicked()), mField, SLOT(stopGenerations()));
-	connect(mClearButton, SIGNAL(clicked()), mField, SLOT(clear()));
-	connect(mStartButton, SIGNAL(clicked()), this, SLOT(toggleButtons()));
-	connect(mStopButton, SIGNAL(clicked()), this, SLOT(toggleButtons()));
+	connect(mStartButton, &QPushButton::clicked, mField, &Field::startGenerations);
+	connect(mStopButton, &QPushButton::clicked, mField, &Field::stopGenerations);
+	connect(mStepButton, &QPushButton::clicked, mField, &Field::nextGeneration);
+	connect(mClearButton, &QPushButton::clicked, mField, &Field::stopGenerations);
+	connect(mClearButton, &QPushButton::clicked, mField, &Field::clear);
+
+	connect(mStartButton, &QPushButton::clicked, this, &Board::toggleButtons);
+	connect(mStopButton, &QPushButton::clicked, this, &Board::toggleButtons);
   
-	connect(mSlowButton, SIGNAL(clicked()), mField, SLOT(setSlow()));
-	connect(mNormalButton, SIGNAL(clicked()), mField, SLOT(setNormal()));
-	connect(mFastButton, SIGNAL(clicked()), mField, SLOT(setFast()));
+	connect(mSlowButton, &QRadioButton::clicked, mField, &Field::setSlow);
+	connect(mNormalButton, &QRadioButton::clicked, mField, &Field::setNormal);
+	connect(mFastButton, &QRadioButton::clicked, mField, &Field::setFast);
   
 	QHBoxLayout* buttonLayout = new QHBoxLayout;
 	buttonLayout->addWidget(mStartButton);

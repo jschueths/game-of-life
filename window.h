@@ -12,8 +12,8 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
 
-#include <QtGui>
 #include <QApplication>
+#include <QtWidgets>
 
 #include "board.h"
 

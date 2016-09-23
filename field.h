@@ -13,7 +13,7 @@
 #define __FIELD_H__
 
 #include <QApplication>
-#include <QtGui>
+#include <QtWidgets>
 
 class Field : public QWidget {
 	Q_OBJECT
