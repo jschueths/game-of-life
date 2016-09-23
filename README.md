@@ -5,7 +5,7 @@ An implementation of Conway's Game of Life written in C++ and using Qt4 to provi
 
 To build:
 
-    qmake -project
-    qmake
+    cd build
+    cmake ..
     make
 
