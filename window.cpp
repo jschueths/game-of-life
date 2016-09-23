@@ -19,7 +19,7 @@
 /// @pre none
 /// @post A new Window object is created.
 //////////////////////////////////////////////////////////////////////
-Window::Window(QWidget *parent) : QMainWindow(parent) {
+Window::Window(QWidget* parent) : QMainWindow(parent) {
 	mBoard = new Board;
 
 	mOpenAction = new QAction(tr("&Open"), this);

@@ -17,7 +17,7 @@
 /// @param argc The number of command line arguments passed in.
 /// @param argv An array of chars holding the command line arguments.
 //////////////////////////////////////////////////////////////////////
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	QApplication app(argc, argv);
 	Window mainWindow;
 	mainWindow.show();

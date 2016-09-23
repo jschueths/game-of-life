@@ -21,7 +21,7 @@ class Window : public QMainWindow {
 	Q_OBJECT
 
 	public:
-		Window(QWidget *parent = 0);
+		Window(QWidget* parent = 0);
 
 	private:
 		Board* mBoard;     ///< A pointer to the Board object

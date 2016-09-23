@@ -14,7 +14,7 @@
 /// @pre none
 /// @post A new Board object is created.
 //////////////////////////////////////////////////////////////////////
-Board::Board(QWidget *parent) : QWidget(parent) {
+Board::Board(QWidget* parent) : QWidget(parent) {
 	mField = new Field(this);
 	mStartButton = new QPushButton(tr("Start"));
 	mStopButton = new QPushButton(tr("Stop"));

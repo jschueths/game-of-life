@@ -12,7 +12,7 @@
 /// @pre none
 /// @post A Field object is created.
 //////////////////////////////////////////////////////////////////////
-Field::Field(QWidget *parent) : QWidget(parent) {
+Field::Field(QWidget* parent) : QWidget(parent) {
 	mSCALE = 10;
 	mMaxI = MAXSIZE;
 	mMaxJ = MAXSIZE;
@@ -155,7 +155,7 @@ void Field::clear() {
 /// @post The Field on screen is refreshed.
 /// @param e The QPaintEvent that was system generated.
 //////////////////////////////////////////////////////////////////////
-void Field::paintEvent(QPaintEvent *e) {
+void Field::paintEvent(QPaintEvent* e) {
 	int starti = pos2index(e->rect().left());
 	int stopi = pos2index(e->rect().right());
 	int startj = pos2index(e->rect().top());
@@ -186,7 +186,7 @@ void Field::paintEvent(QPaintEvent *e) {
 /// @post none
 /// @param e The QResizeEvent
 //////////////////////////////////////////////////////////////////////
-void Field::resizeEvent(QResizeEvent *e) {
+void Field::resizeEvent(QResizeEvent* e) {
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ void Field::resizeEvent(QResizeEvent *e) {
 /// @post A call to mouseHandle() is made.
 /// @param e The QMouseEvent that was captured.
 //////////////////////////////////////////////////////////////////////
-void Field::mousePressEvent(QMouseEvent *e) {
+void Field::mousePressEvent(QMouseEvent* e) {
 	if(e->button() == Qt::LeftButton) {
 		mouseHandle(e->pos(), true);
 	}
@@ -214,7 +214,7 @@ void Field::mousePressEvent(QMouseEvent *e) {
 /// @post A call to mouseHandle() is made.
 /// @param e The QMouseEvent that was captured.
 //////////////////////////////////////////////////////////////////////
-void Field::mouseMoveEvent(QMouseEvent *e) {
+void Field::mouseMoveEvent(QMouseEvent* e) {
 	if(e->buttons() == Qt::LeftButton) {
 		mouseHandle(e->pos(), true);
 	}

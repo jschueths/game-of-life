@@ -20,7 +20,7 @@ class Board : public QWidget {
 	Q_OBJECT
   
 	public:
-		Board(QWidget *parent = 0);
+		Board(QWidget* parent = 0);
 		bool& operator()(int x, int y);
 		const bool& operator()(const int x, const int y) const;
 
