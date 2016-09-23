@@ -14,24 +14,25 @@
 
 #include <QtGui>
 #include <QApplication>
+
 #include "board.h"
 
 class Window : public QMainWindow {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    Window(QWidget *parent = 0);
+	public:
+		Window(QWidget *parent = 0);
 
-  private:
-    Board *board;     ///< A pointer to the Board object
-    QMenu *fileMenu;      ///< A pointer to a QMenu object
-    QAction *openAction;  ///< A pointer to the Open action
-    QAction *saveAction;  ///< A pointer to the Save action
-    QAction *exitAction;  ///< A pointer to the Exit action
+	private:
+		Board* mBoard;     ///< A pointer to the Board object
+		QMenu* mFileMenu;      ///< A pointer to a QMenu object
+		QAction* mOpenAction;  ///< A pointer to the Open action
+		QAction* mSaveAction;  ///< A pointer to the Save action
+		QAction* mExitAction;  ///< A pointer to the Exit action
 
-  private slots:
-    void open();
-    void save();
+	private slots:
+		void open();
+		void save();
 };
 
 #endif

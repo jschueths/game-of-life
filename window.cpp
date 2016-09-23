@@ -20,25 +20,24 @@
 /// @post A new Window object is created.
 //////////////////////////////////////////////////////////////////////
 Window::Window(QWidget *parent) : QMainWindow(parent) {
-  board = new Board;
+	mBoard = new Board;
 
-  openAction = new QAction(tr("&Open"), this);
-  saveAction = new QAction(tr("&Save"), this);
-  exitAction = new QAction(tr("E&xit"), this);
+	mOpenAction = new QAction(tr("&Open"), this);
+	mSaveAction = new QAction(tr("&Save"), this);
+	mExitAction = new QAction(tr("E&xit"), this);
 
-  connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
-  connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
-  connect(exitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+	connect(mOpenAction, SIGNAL(triggered()), this, SLOT(open()));
+	connect(mSaveAction, SIGNAL(triggered()), this, SLOT(save()));
+	connect(mExitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-  fileMenu = menuBar()->addMenu(tr("&File"));
-  fileMenu->addAction(openAction);
-  fileMenu->addAction(saveAction);
-  fileMenu->addSeparator();
-  fileMenu->addAction(exitAction);
+	mFileMenu = menuBar()->addMenu(tr("&File"));
+	mFileMenu->addAction(mOpenAction);
+	mFileMenu->addAction(mSaveAction);
+	mFileMenu->addSeparator();
+	mFileMenu->addAction(mExitAction);
 
-  setCentralWidget(board);
-  setWindowTitle(tr("Conway's Game of Life"));
-
+	setCentralWidget(mBoard);
+	setWindowTitle(tr("Conway's Game of Life"));
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -49,26 +48,26 @@ Window::Window(QWidget *parent) : QMainWindow(parent) {
 /// in the file.
 //////////////////////////////////////////////////////////////////////
 void Window::open() {
-  QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Grid Files (*.grd)"));
-  if(fileName != "") {
-    QFile file(fileName);
-    if(!file.open(QIODevice::ReadOnly)) {
-      QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
-      return;
-    }
-    // Read in and set the grid here.
-    QTextStream stream(&file);
-    for(int i = 0; i < 52; i++) {
-	    QString line;
-	    stream >> line;
-	    for(int j = 0; j < 52; j++) {
-		    board->operator()(i,j) = line[j] == '1' ? true : false;
-	    }
-    }
-    file.close();
-    repaint();
-  }
-  return;
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Grid Files (*.grd)"));
+	if(fileName != "") {
+		QFile file(fileName);
+		if(!file.open(QIODevice::ReadOnly)) {
+			QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
+			return;
+		}
+
+		// Read in and set the grid here.
+		QTextStream stream(&file);
+		for(int i = 0; i < 52; i++) {
+			QString line;
+			stream >> line;
+			for(int j = 0; j < 52; j++) {
+				mBoard->operator()(i,j) = line[j] == '1' ? true : false;
+			}
+		}
+		file.close();
+		repaint();
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -78,23 +77,22 @@ void Window::open() {
 /// @post A configuration file is saved to disk.
 //////////////////////////////////////////////////////////////////////
 void Window::save() {
-  QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Grid Files (*.grd)"));
-  if(fileName != "") {
-    QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly)) {
-      QMessageBox::critical(this, tr("Error"), tr("Could not save file"));
-    } else {
-      QTextStream stream(&file);
-      // Write out the grid here.
-      for(int i = 0; i < 52; i++) {
-        for(int j = 0; j < 52; j++) {
-          stream << board->operator()(i, j);
-        }
-        stream << "\n";
-      }
-      stream.flush();
-      file.close();
-    }
-  }
+	QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Grid Files (*.grd)"));
+	if(fileName != "") {
+		QFile file(fileName);
+		if(!file.open(QIODevice::WriteOnly)) {
+			QMessageBox::critical(this, tr("Error"), tr("Could not save file"));
+		} else {
+			QTextStream stream(&file);
+			// Write out the grid here.
+			for(int i = 0; i < 52; i++) {
+				for(int j = 0; j < 52; j++) {
+					stream << mBoard->operator()(i, j);
+				}
+				stream << "\n";
+			}
+			stream.flush();
+			file.close();
+		}
+	}
 }
-

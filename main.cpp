@@ -5,6 +5,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include <QApplication>
+
 #include "window.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -17,9 +18,9 @@
 /// @param argv An array of chars holding the command line arguments.
 //////////////////////////////////////////////////////////////////////
 int main(int argc, char *argv[]) {
-  QApplication app(argc, argv);
-  Window mainWindow;
-  mainWindow.show();
-  return app.exec();
+	QApplication app(argc, argv);
+	Window mainWindow;
+	mainWindow.show();
+	return app.exec();
 }
 

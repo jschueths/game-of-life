@@ -5,6 +5,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include <QtGui>
+
 #include "board.h"
 
 //////////////////////////////////////////////////////////////////////
@@ -14,60 +15,58 @@
 /// @post A new Board object is created.
 //////////////////////////////////////////////////////////////////////
 Board::Board(QWidget *parent) : QWidget(parent) {
-  field = new Field(this);
-  startButton = new QPushButton(tr("Start"));
-  stopButton = new QPushButton(tr("Stop"));
-  stepButton = new QPushButton(tr("Step"));
-  clearButton = new QPushButton(tr("Clear"));
-  stopButton->setEnabled(false);
-  
-  slowButton = new QRadioButton(tr("Slow"));
-  normalButton = new QRadioButton(tr("Normal"));
-  fastButton = new QRadioButton(tr("Fast"));
-  normalButton->setChecked(true);
-  
+	mField = new Field(this);
+	mStartButton = new QPushButton(tr("Start"));
+	mStopButton = new QPushButton(tr("Stop"));
+	mStepButton = new QPushButton(tr("Step"));
 
-  connect(startButton, SIGNAL(clicked()), field, SLOT(startGenerations()));
-  connect(stopButton, SIGNAL(clicked()), field, SLOT(stopGenerations()));
-  connect(stepButton, SIGNAL(clicked()), field, SLOT(nextGeneration()));
-  connect(clearButton, SIGNAL(clicked()), field, SLOT(stopGenerations()));
-  connect(clearButton, SIGNAL(clicked()), field, SLOT(clear()));
+	mClearButton = new QPushButton(tr("Clear"));
+	mStopButton->setEnabled(false);
 
-  connect(startButton, SIGNAL(clicked()), this, SLOT(toggleButtons()));
-  connect(stopButton, SIGNAL(clicked()), this, SLOT(toggleButtons()));
-  
-  connect(slowButton, SIGNAL(clicked()), field, SLOT(setSlow()));
-  connect(normalButton, SIGNAL(clicked()), field, SLOT(setNormal()));
-  connect(fastButton, SIGNAL(clicked()), field, SLOT(setFast()));
-  
-  QHBoxLayout *buttonLayout = new QHBoxLayout;
-  buttonLayout->addWidget(startButton);
-  buttonLayout->addWidget(stepButton);
-  buttonLayout->addWidget(stopButton);
-  buttonLayout->addWidget(clearButton);
-  
-  QGroupBox *speedBox = new QGroupBox(tr("Simulation Speed"));
-  QHBoxLayout *speedLayout = new QHBoxLayout;
-  speedLayout->addWidget(slowButton);
-  speedLayout->addWidget(normalButton);
-  speedLayout->addWidget(fastButton);
-  speedBox->setLayout(speedLayout);
+	mSlowButton = new QRadioButton(tr("Slow"));
+	mNormalButton = new QRadioButton(tr("Normal"));
+	mFastButton = new QRadioButton(tr("Fast"));
+	mNormalButton->setChecked(true);
 
-  QFrame *lifeBox = new QFrame;
-  QVBoxLayout *fieldLayout = new QVBoxLayout;
-  fieldLayout->addWidget(field);
-  lifeBox->setLayout(fieldLayout);
+	connect(mStartButton, SIGNAL(clicked()), mField, SLOT(startGenerations()));
+	connect(mStopButton, SIGNAL(clicked()), mField, SLOT(stopGenerations()));
+	connect(mStepButton, SIGNAL(clicked()), mField, SLOT(nextGeneration()));
+	connect(mClearButton, SIGNAL(clicked()), mField, SLOT(stopGenerations()));
+	connect(mClearButton, SIGNAL(clicked()), mField, SLOT(clear()));
+	connect(mStartButton, SIGNAL(clicked()), this, SLOT(toggleButtons()));
+	connect(mStopButton, SIGNAL(clicked()), this, SLOT(toggleButtons()));
   
-  QVBoxLayout *mainLayout = new QVBoxLayout;
-  mainLayout->addWidget(lifeBox);
-  mainLayout->addLayout(buttonLayout);
-  mainLayout->addWidget(speedBox);
-  mainLayout->setStretch(0, 1);
-  setLayout(mainLayout);
+	connect(mSlowButton, SIGNAL(clicked()), mField, SLOT(setSlow()));
+	connect(mNormalButton, SIGNAL(clicked()), mField, SLOT(setNormal()));
+	connect(mFastButton, SIGNAL(clicked()), mField, SLOT(setFast()));
   
-  resize(550, 650);
-  setFixedSize(550, 650);
+	QHBoxLayout* buttonLayout = new QHBoxLayout;
+	buttonLayout->addWidget(mStartButton);
+	buttonLayout->addWidget(mStepButton);
+	buttonLayout->addWidget(mStopButton);
+	buttonLayout->addWidget(mClearButton);
+
+	QGroupBox* speedBox = new QGroupBox(tr("Simulation Speed"));
+	QHBoxLayout* speedLayout = new QHBoxLayout;
+	speedLayout->addWidget(mSlowButton);
+	speedLayout->addWidget(mNormalButton);
+	speedLayout->addWidget(mFastButton);
+	speedBox->setLayout(speedLayout);
+
+	QFrame* lifeBox = new QFrame;
+	QVBoxLayout* fieldLayout = new QVBoxLayout;
+	fieldLayout->addWidget(mField);
+	lifeBox->setLayout(fieldLayout);
   
+	QVBoxLayout* mainLayout = new QVBoxLayout;
+	mainLayout->addWidget(lifeBox);
+	mainLayout->addLayout(buttonLayout);
+	mainLayout->addWidget(speedBox);
+	mainLayout->setStretch(0, 1);
+	setLayout(mainLayout);
+
+	resize(550, 650);
+	setFixedSize(550, 650);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -77,10 +76,10 @@ Board::Board(QWidget *parent) : QWidget(parent) {
 /// @post The control buttons are toggled from their current state.
 //////////////////////////////////////////////////////////////////////
 void Board::toggleButtons() {
-  startButton->setEnabled((startButton->isEnabled() ? false : true));
-  stopButton->setEnabled((stopButton->isEnabled() ? false : true));
-  stepButton->setEnabled((stepButton->isEnabled() ? false : true));
-  clearButton->setEnabled((clearButton->isEnabled() ? false : true));
+	mStartButton->setEnabled((mStartButton->isEnabled() ? false : true));
+	mStopButton->setEnabled((mStopButton->isEnabled() ? false : true));
+	mStepButton->setEnabled((mStepButton->isEnabled() ? false : true));
+	mClearButton->setEnabled((mClearButton->isEnabled() ? false : true));
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -92,7 +91,7 @@ void Board::toggleButtons() {
 /// @param y The y-coordinate
 //////////////////////////////////////////////////////////////////////
 bool& Board::operator()(int x, int y) {
-  return field->operator()(x, y);
+	return mField->operator()(x, y);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -104,6 +103,5 @@ bool& Board::operator()(int x, int y) {
 /// @param y The y-coordinate
 //////////////////////////////////////////////////////////////////////
 const bool& Board::operator()(const int x, const int y) const {
-  return field->operator()(x, y);
+	return mField->operator()(x, y);
 }
-

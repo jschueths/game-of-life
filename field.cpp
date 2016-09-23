@@ -13,22 +13,22 @@
 /// @post A Field object is created.
 //////////////////////////////////////////////////////////////////////
 Field::Field(QWidget *parent) : QWidget(parent) {
-  SCALE = 10;
-  maxi = MAXSIZE;
-  maxj = MAXSIZE;
-  current = 0;
-  speed = NORMAL;
-  
-  setMinimumSize(MINSIZE * SCALE + 2 * BORDER, MINSIZE * SCALE + 2 * BORDER);
-  setMaximumSize(MAXSIZE * SCALE + 2 * BORDER, MAXSIZE * SCALE + 2 * BORDER);
-  setSizeIncrement(SCALE, SCALE);
-  
-  genTimer = new QTimer(this);
-  connect(genTimer, SIGNAL(timeout()), this, SLOT(nextGeneration()));
-  
-  clear();
-  resize(MAXSIZE * SCALE + 2 * BORDER, MAXSIZE * SCALE + 2 * BORDER);
-  repaint();
+	mSCALE = 10;
+	mMaxI = MAXSIZE;
+	mMaxJ = MAXSIZE;
+	mCurrent = 0;
+	mSpeed = NORMAL;
+
+	setMinimumSize(MINSIZE * mSCALE + 2 * BORDER, MINSIZE * mSCALE + 2 * BORDER);
+	setMaximumSize(MAXSIZE * mSCALE + 2 * BORDER, MAXSIZE * mSCALE + 2 * BORDER);
+	setSizeIncrement(mSCALE, mSCALE);
+
+	mGenTimer = new QTimer(this);
+	connect(mGenTimer, SIGNAL(timeout()), this, SLOT(nextGeneration()));
+
+	clear();
+	resize(MAXSIZE * mSCALE + 2 * BORDER, MAXSIZE * mSCALE + 2 * BORDER);
+	repaint();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -41,11 +41,11 @@ Field::Field(QWidget *parent) : QWidget(parent) {
 /// @param state The boolean state to change the cell
 //////////////////////////////////////////////////////////////////////
 void Field::setPoint(int i, int j, bool state) {
-  if(i < 1 || i > maxi || j < 1 || j > maxj) {
-    return;
-  }
-  cell[current][i][j] = state;
-  repaint(index2pos(i), index2pos(j), SCALE, SCALE);
+	if(i < 1 || i > mMaxI || j < 1 || j > mMaxJ) {
+		return;
+	}
+	mCell[mCurrent][i][j] = state;
+	repaint(index2pos(i), index2pos(j), mSCALE, mSCALE);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -56,23 +56,22 @@ void Field::setPoint(int i, int j, bool state) {
 /// @post The next set of cells is set.
 //////////////////////////////////////////////////////////////////////
 void Field::nextGeneration() {
-  for(int i = 1; i <= MAXSIZE; i++) {
-    for(int j = 1; j <= MAXSIZE; j++) {
-      int t = cell[current][i - 1][j - 1]
-      + cell[current][i - 1][j]
-      + cell[current][i - 1][j + 1]
-      + cell[current][i][j - 1]
-      + cell[current][i][j + 1]
-      + cell[current][i + 1][j - 1]
-      + cell[current][i + 1][j]
-      + cell[current][i + 1][j + 1];
-      
-      cell[!current][i][j] = (t == 3 || (t == 2 && cell[current][i][j]));
-    }
-  }
-  current = !current;
-  repaint();
-  return;
+	for(int i = 1; i <= MAXSIZE; i++) {
+		for(int j = 1; j <= MAXSIZE; j++) {
+			  int t = mCell[mCurrent][i - 1][j - 1]
+			  + mCell[mCurrent][i - 1][j]
+			  + mCell[mCurrent][i - 1][j + 1]
+			  + mCell[mCurrent][i][j - 1]
+			  + mCell[mCurrent][i][j + 1]
+			  + mCell[mCurrent][i + 1][j - 1]
+			  + mCell[mCurrent][i + 1][j]
+			  + mCell[mCurrent][i + 1][j + 1];
+
+			  mCell[!mCurrent][i][j] = (t == 3 || (t == 2 && mCell[mCurrent][i][j]));
+		}
+	}
+	mCurrent = !mCurrent;
+	repaint();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -82,10 +81,9 @@ void Field::nextGeneration() {
 /// @post genTimer is started with a delay of speed.
 //////////////////////////////////////////////////////////////////////
 void Field::startGenerations() {
-  if(!genTimer->isActive()) {
-    genTimer->start(speed);
-  }
-  return;
+	if(!mGenTimer->isActive()) {
+		mGenTimer->start(mSpeed);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -96,8 +94,7 @@ void Field::startGenerations() {
 /// @post genTimer is stopped
 //////////////////////////////////////////////////////////////////////
 void Field::stopGenerations() {
-  genTimer->stop();
-  return;
+	mGenTimer->stop();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -107,9 +104,8 @@ void Field::stopGenerations() {
 /// @post The speed and timer interval are set to FAST.
 //////////////////////////////////////////////////////////////////////
 void Field::setFast() {
-  speed = FAST;
-  genTimer->setInterval(speed);
-  return;
+	mSpeed = FAST;
+	mGenTimer->setInterval(mSpeed);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -119,9 +115,8 @@ void Field::setFast() {
 /// @post The speed and timer interval are set to NORMAL.
 //////////////////////////////////////////////////////////////////////
 void Field::setNormal() {
-  speed = NORMAL;
-  genTimer->setInterval(speed);
-  return;
+	mSpeed = NORMAL;
+	mGenTimer->setInterval(mSpeed);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -131,9 +126,8 @@ void Field::setNormal() {
 /// @post The speed and timer interval are set to SLOW.
 //////////////////////////////////////////////////////////////////////
 void Field::setSlow() {
-  speed = SLOW;
-  genTimer->setInterval(speed);
-  return;
+	mSpeed = SLOW;
+	mGenTimer->setInterval(mSpeed);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -143,17 +137,15 @@ void Field::setSlow() {
 /// @post All the boolean cells are set to false.
 //////////////////////////////////////////////////////////////////////
 void Field::clear() {
-  current = 0;
-  for(int t = 0; t < 2; t++) {
-    for(int i = 0; i < MAXSIZE + 2; i++) {
-      for(int j = 0; j < MAXSIZE + 2; j++) {
-        cell[t][i][j] = false;
-      }
-    }
-  }
-  
-  repaint();
-  return;
+	mCurrent = 0;
+	for(int t = 0; t < 2; t++) {
+		for(int i = 0; i < MAXSIZE + 2; i++) {
+			for(int j = 0; j < MAXSIZE + 2; j++) {
+				mCell[t][i][j] = false;
+			}
+		}
+	}
+	repaint();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -164,28 +156,27 @@ void Field::clear() {
 /// @param e The QPaintEvent that was system generated.
 //////////////////////////////////////////////////////////////////////
 void Field::paintEvent(QPaintEvent *e) {
-  int starti = pos2index(e->rect().left());
-  int stopi = pos2index(e->rect().right());
-  int startj = pos2index(e->rect().top());
-  int stopj = pos2index(e->rect().bottom());
-  
-  stopi = (stopi > maxi) ? maxi : stopi;
-  stopj = (stopj > maxj) ? maxj : stopj;
-  
-  QPainter paint(this);
-  paint.setPen(Qt::NoPen);
+	int starti = pos2index(e->rect().left());
+	int stopi = pos2index(e->rect().right());
+	int startj = pos2index(e->rect().top());
+	int stopj = pos2index(e->rect().bottom());
 
-  for(int i = starti; i <= stopi; i++) {
-    for(int j = startj; j <= stopj; j++) {
-      if(cell[current][i][j]) {
-        paint.setBrush(Qt::green);
-      } else {
-        paint.setBrush(Qt::black);
-      }
-      paint.drawRect(index2pos(i), index2pos(j), SCALE - 1, SCALE - 1);
-    }
-  }
-  return;
+	stopi = (stopi > mMaxI) ? mMaxI : stopi;
+	stopj = (stopj > mMaxJ) ? mMaxJ : stopj;
+
+	QPainter paint(this);
+	paint.setPen(Qt::NoPen);
+
+	for(int i = starti; i <= stopi; i++) {
+		for(int j = startj; j <= stopj; j++) {
+			if(mCell[mCurrent][i][j]) {
+				paint.setBrush(Qt::green);
+			} else {
+				paint.setBrush(Qt::black);
+			}
+			paint.drawRect(index2pos(i), index2pos(j), mSCALE - 1, mSCALE - 1);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -196,7 +187,6 @@ void Field::paintEvent(QPaintEvent *e) {
 /// @param e The QResizeEvent
 //////////////////////////////////////////////////////////////////////
 void Field::resizeEvent(QResizeEvent *e) {
-  return;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -208,13 +198,12 @@ void Field::resizeEvent(QResizeEvent *e) {
 /// @param e The QMouseEvent that was captured.
 //////////////////////////////////////////////////////////////////////
 void Field::mousePressEvent(QMouseEvent *e) {
-  if(e->button() == Qt::LeftButton) {
-    mouseHandle(e->pos(), true);
-  }
-  if(e->button() == Qt::RightButton) {
-    mouseHandle(e->pos(), false);
-  }
-  return;
+	if(e->button() == Qt::LeftButton) {
+		mouseHandle(e->pos(), true);
+	}
+	if(e->button() == Qt::RightButton) {
+		mouseHandle(e->pos(), false);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -226,13 +215,12 @@ void Field::mousePressEvent(QMouseEvent *e) {
 /// @param e The QMouseEvent that was captured.
 //////////////////////////////////////////////////////////////////////
 void Field::mouseMoveEvent(QMouseEvent *e) {
-    if(e->buttons() == Qt::LeftButton) {
-      mouseHandle(e->pos(), true);
-    }
-    if(e->buttons() == Qt::RightButton) {
-      mouseHandle(e->pos(), false);
-    }
-  return;
+	if(e->buttons() == Qt::LeftButton) {
+		mouseHandle(e->pos(), true);
+	}
+	if(e->buttons() == Qt::RightButton) {
+		mouseHandle(e->pos(), false);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -245,9 +233,9 @@ void Field::mouseMoveEvent(QMouseEvent *e) {
 /// @param state The boolean state to change the cell to.
 //////////////////////////////////////////////////////////////////////
 void Field::mouseHandle(const QPoint &pos, bool state) {
-  int i = pos2index(pos.x());
-  int j = pos2index(pos.y());
-  setPoint(i, j, state);
+	int i = pos2index(pos.x());
+	int j = pos2index(pos.y());
+	setPoint(i, j, state);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -258,7 +246,7 @@ void Field::mouseHandle(const QPoint &pos, bool state) {
 /// @param x The coordinate of the position.
 //////////////////////////////////////////////////////////////////////
 int Field::pos2index(int x) {
-  return (x - BORDER) / SCALE + 1;
+	return (x - BORDER) / mSCALE + 1;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -269,7 +257,7 @@ int Field::pos2index(int x) {
 /// @param x The index coordinate.
 //////////////////////////////////////////////////////////////////////
 int Field::index2pos(int x) {
-  return (x - 1) * SCALE + BORDER;
+	return (x - 1) * mSCALE + BORDER;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -281,7 +269,7 @@ int Field::index2pos(int x) {
 /// @param y The y-coordinate
 //////////////////////////////////////////////////////////////////////
 bool& Field::operator()(int x, int y) {
-  return cell[current][x][y];
+	return mCell[mCurrent][x][y];
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -293,6 +281,5 @@ bool& Field::operator()(int x, int y) {
 /// @param y The y-coordinate
 //////////////////////////////////////////////////////////////////////
 const bool& Field::operator()(const int x, const int y) const {
-  return cell[current][x][y];
+	return mCell[mCurrent][x][y];
 }
-
