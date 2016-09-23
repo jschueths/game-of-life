@@ -1,21 +1,20 @@
 //////////////////////////////////////////////////////////////////////
-/// @file Life_board.cpp
+/// @file board.cpp
 /// @author jschueths
-/// @brief This is the implementation of the LifeBoard class.
+/// @brief This is the implementation of the Board class.
 //////////////////////////////////////////////////////////////////////
 
 #include <QtGui>
-#include "Life_board.h"
+#include "board.h"
 
 //////////////////////////////////////////////////////////////////////
-/// @fn LifeBoard::LifeBoard(QWidget *parent)
-/// @brief Constructor for the LifeBoard class.
+/// @fn Board::Board(QWidget *parent)
+/// @brief Constructor for the Board class.
 /// @pre none
-/// @post A new LifeBoard object is created.
+/// @post A new Board object is created.
 //////////////////////////////////////////////////////////////////////
-LifeBoard::LifeBoard(QWidget *parent) : QWidget(parent)
-{
-  field = new LifeField(this);
+Board::Board(QWidget *parent) : QWidget(parent) {
+  field = new Field(this);
   startButton = new QPushButton(tr("Start"));
   stopButton = new QPushButton(tr("Stop"));
   stepButton = new QPushButton(tr("Step"));
@@ -72,42 +71,39 @@ LifeBoard::LifeBoard(QWidget *parent) : QWidget(parent)
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void LifeBoard::toggleButtons()
+/// @fn void Board::toggleButtons()
 /// @brief Enables and disables the control buttons based on state.
 /// @pre none
 /// @post The control buttons are toggled from their current state.
 //////////////////////////////////////////////////////////////////////
-void LifeBoard::toggleButtons()
-{
+void Board::toggleButtons() {
   startButton->setEnabled((startButton->isEnabled() ? false : true));
   stopButton->setEnabled((stopButton->isEnabled() ? false : true));
   stepButton->setEnabled((stepButton->isEnabled() ? false : true));
   clearButton->setEnabled((clearButton->isEnabled() ? false : true));
-  return;
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn bool& LifeBoard::operator()(int x, int y)
-/// @brief Mutator to the LifeField member.
+/// @fn bool& Board::operator()(int x, int y)
+/// @brief Mutator to the Field member.
 /// @pre 'x' and 'y' must be greater than 0 and less than 52.
 /// @post A reference to the boolean is returned.
 /// @param x The x-coordinate
 /// @param y The y-coordinate
 //////////////////////////////////////////////////////////////////////
-bool& LifeBoard::operator()(int x, int y)
-{
+bool& Board::operator()(int x, int y) {
   return field->operator()(x, y);
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn const bool& LifeBoard::operator()(int x, int y) const
-/// @brief Accessor to the LifeField member.
+/// @fn const bool& Board::operator()(int x, int y) const
+/// @brief Accessor to the Field member.
 /// @pre 'x' and 'y' must be greater than 0 and less than 52.
 /// @post A const reference to the boolean is returned.
 /// @param x The x-coordinate
 /// @param y The y-coordinate
 //////////////////////////////////////////////////////////////////////
-const bool& LifeBoard::operator()(const int x, const int y) const
-{
+const bool& Board::operator()(const int x, const int y) const {
   return field->operator()(x, y);
 }
+

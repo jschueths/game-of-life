@@ -1,27 +1,26 @@
 //////////////////////////////////////////////////////////////////////
-/// @file Life_field.h
+/// @file field.h
 /// @author jschueths
-/// @brief This is the class definition of the LifeField class.
+/// @brief This is the class definition of the Field class.
 //////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////
-/// @class LifeField
-/// @brief The LifeField class provides a frame and functionality
+/// @class Field
+/// @brief The Field class provides a frame and functionality
 /// for the visualization of the Game of Life. 
 //////////////////////////////////////////////////////////////////////
-#ifndef __LIFE_FIELD_H__
-#define __LIFE_FIELD_H__
+#ifndef __FIELD_H__
+#define __FIELD_H__
 
 
 #include <QApplication>
 #include <QtGui>
 
-class LifeField : public QWidget
-{
+class Field : public QWidget {
   Q_OBJECT
   
   public:
-    LifeField(QWidget *parent = 0);
+    Field(QWidget *parent = 0);
     void setPoint(int i, int j, bool state);
     bool& operator()(int x, int y);
     const bool& operator()(const int x, const int y) const;

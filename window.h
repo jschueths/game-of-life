@@ -1,30 +1,29 @@
 //////////////////////////////////////////////////////////////////////
-/// @file Life_window.h
+/// @file window.h
 /// @author jschueths
-/// @brief This is the class definition of the LifeWindow class.
+/// @brief This is the class definition of the Window class.
 //////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////
-/// @class LifeWindow
-/// @brief The LifeWindow class provides a QMainWindow wrapper to
+/// @class Window
+/// @brief The Window class provides a QMainWindow wrapper to
 /// bring in FileMenu functionality in a nice layout. 
 //////////////////////////////////////////////////////////////////////
-#ifndef __LIFE_WINDOW_H__
-#define __LIFE_WINDOW_H__
+#ifndef __WINDOW_H__
+#define __WINDOW_H__
 
 #include <QtGui>
 #include <QApplication>
-#include "Life_board.h"
+#include "board.h"
 
-class LifeWindow : public QMainWindow
-{
+class Window : public QMainWindow {
   Q_OBJECT
 
   public:
-    LifeWindow(QWidget *parent = 0);
+    Window(QWidget *parent = 0);
 
   private:
-    LifeBoard *board;     ///< A pointer to the LifeBoard object
+    Board *board;     ///< A pointer to the Board object
     QMenu *fileMenu;      ///< A pointer to a QMenu object
     QAction *openAction;  ///< A pointer to the Open action
     QAction *saveAction;  ///< A pointer to the Save action

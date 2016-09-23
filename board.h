@@ -1,26 +1,25 @@
 //////////////////////////////////////////////////////////////////////
-/// @file Life_board.h
+/// @file board.h
 /// @author jschueths
-/// @brief This is the class definition of the LifeBoard class.
+/// @brief This is the class definition of the Board class.
 //////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////
-/// @class LifeBoard
-/// @brief The LifeBoard class is a wrapper around the LifeField
-/// class and the input controls to affect the LifeField. 
+/// @class Board
+/// @brief The Board class is a wrapper around the Field
+/// class and the input controls to affect the Field. 
 //////////////////////////////////////////////////////////////////////
-#ifndef __LIFE_BOARD_H__
-#define __LIFE_BOARD_H__
+#ifndef __BOARD_H__
+#define __BOARD_H__
 
 #include <QApplication>
-#include "Life_field.h"
+#include "field.h"
 
-class LifeBoard : public QWidget
-{
+class Board : public QWidget {
   Q_OBJECT
   
   public:
-    LifeBoard(QWidget *parent = 0);
+    Board(QWidget *parent = 0);
     bool& operator()(int x, int y);
     const bool& operator()(const int x, const int y) const;
    
@@ -28,7 +27,7 @@ class LifeBoard : public QWidget
     void toggleButtons();
   
   private:
-    LifeField *field;           ///< Pointer to the LifeField object
+    Field *field;           ///< Pointer to the Field object
     QPushButton *startButton;   ///< Pointer to the Start button
     QPushButton *stopButton;    ///< Pointer to the Stop button
     QPushButton *stepButton;    ///< Pointer to the Step button
@@ -39,3 +38,4 @@ class LifeBoard : public QWidget
 };
 
 #endif
+

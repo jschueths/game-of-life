@@ -1,24 +1,26 @@
 //////////////////////////////////////////////////////////////////////
-/// @file Life_window.cpp
+/// @file window.cpp
 /// @author jschueths
-/// @brief This is the implementation of the LifeWindow class.
+/// @brief This is the implementation of the Window class.
 //////////////////////////////////////////////////////////////////////
 
-#include <QtGui>
-#include "Life_window.h"
 #include <fstream>
+#include <iostream>
 #include <string>
 
+#include <QtGui>
+
+#include "window.h"
+
 
 //////////////////////////////////////////////////////////////////////
-/// @fn LifeWindow::LifeWindow(QWidget *parent)
-/// @brief Constructor for the LifeWindow class.
+/// @fn Window::Window(QWidget *parent)
+/// @brief Constructor for the Window class.
 /// @pre none
-/// @post A new LifeWindow object is created.
+/// @post A new Window object is created.
 //////////////////////////////////////////////////////////////////////
-LifeWindow::LifeWindow(QWidget *parent) : QMainWindow(parent)
-{
-  board = new LifeBoard;
+Window::Window(QWidget *parent) : QMainWindow(parent) {
+  board = new Board;
 
   openAction = new QAction(tr("&Open"), this);
   saveAction = new QAction(tr("&Save"), this);
@@ -38,22 +40,19 @@ LifeWindow::LifeWindow(QWidget *parent) : QMainWindow(parent)
   setWindowTitle(tr("Conway's Game of Life"));
 
 }
-#include <iostream>
+
 //////////////////////////////////////////////////////////////////////
-/// @fn void LifeWindow::open()
+/// @fn void Window::open()
 /// @brief Opens and reads in a file from disk.
 /// @pre none
-/// @post Sets the LifeField to the configuration that was stored
+/// @post Sets the Field to the configuration that was stored
 /// in the file.
 //////////////////////////////////////////////////////////////////////
-void LifeWindow::open()
-{
+void Window::open() {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Grid Files (*.grd)"));
-  if(fileName != "")
-  {
+  if(fileName != "") {
     QFile file(fileName);
-    if(!file.open(QIODevice::ReadOnly))
-    {
+    if(!file.open(QIODevice::ReadOnly)) {
       QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
       return;
     }
@@ -73,29 +72,22 @@ void LifeWindow::open()
 }
 
 //////////////////////////////////////////////////////////////////////
-/// @fn void LifeWindow::save()
-/// @brief Saves the current LifeField configuration to disk.
+/// @fn void Window::save()
+/// @brief Saves the current Field configuration to disk.
 /// @pre none
 /// @post A configuration file is saved to disk.
 //////////////////////////////////////////////////////////////////////
-void LifeWindow::save()
-{
+void Window::save() {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Grid Files (*.grd)"));
-  if(fileName != "")
-  {
+  if(fileName != "") {
     QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly))
-    {
+    if(!file.open(QIODevice::WriteOnly)) {
       QMessageBox::critical(this, tr("Error"), tr("Could not save file"));
-    }
-    else
-    {
+    } else {
       QTextStream stream(&file);
       // Write out the grid here.
-      for(int i = 0; i < 52; i++)
-      {
-        for(int j = 0; j < 52; j++)
-        {
+      for(int i = 0; i < 52; i++) {
+        for(int j = 0; j < 52; j++) {
           stream << board->operator()(i, j);
         }
         stream << "\n";
@@ -104,5 +96,5 @@ void LifeWindow::save()
       file.close();
     }
   }
-  return;
 }
+
