@@ -9,8 +9,10 @@
 /// @brief The Field class provides a frame and functionality
 /// for the visualization of the Game of Life. 
 //////////////////////////////////////////////////////////////////////
-#ifndef __FIELD_H__
-#define __FIELD_H__
+#ifndef FIELD_HPP
+#define FIELD_HPP
+
+#include <array>
 
 #include <QApplication>
 #include <QtWidgets>

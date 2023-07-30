@@ -43,4 +43,8 @@ moc_*
 *.js
 *.css
 Makefile*
+CMakeUserPresets.json
+
+# Ignore build directories
+build*
 

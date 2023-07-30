@@ -6,7 +6,7 @@
 
 #include <QApplication>
 
-#include "window.h"
+#include "window.hpp"
 
 //////////////////////////////////////////////////////////////////////
 /// @fn int main(int argc, char *argv[])

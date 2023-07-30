@@ -14,7 +14,7 @@
 
 #include <QApplication>
 
-#include "field.h"
+#include "field.hpp"
 
 class Board : public QWidget {
 	Q_OBJECT

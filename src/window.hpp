@@ -15,7 +15,7 @@
 #include <QApplication>
 #include <QtWidgets>
 
-#include "board.h"
+#include "board.hpp"
 
 class Window : public QMainWindow {
 	Q_OBJECT

@@ -6,7 +6,7 @@
 
 #include <QtWidgets>
 
-#include "board.h"
+#include "board.hpp"
 
 //////////////////////////////////////////////////////////////////////
 /// @fn Board::Board(QWidget *parent)
